@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INICON Ingeniería & Desarrollo | Gerencia de Contratos y Proyectos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue-dark:   #1F4E79;
+      --blue-main:   #004AAD;
+      --blue-mid:    #2D72C8;
+      --blue-light:  #D6E4F5;
+      --blue-pale:   #EEF4FB;
+      --white:       #FFFFFF;
+      --off-white:   #F7F9FC;
+      --text-dark:   #1A1A2E;
+      --text-mid:    #3D4D6A;
+      --text-muted:  #6B7A99;
+      --border:      #D0DCF0;
+      --gold:        #C8982A;
+      --gold-light:  #FDF3DC;
+      --ai-ink:      #3730A3;
+      --ai-bg:       #EEF2FF;
+      --ai-border:   #C7D2FE;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--text-dark); font-family: 'Open Sans', sans-serif; font-weight: 400; line-height: 1.65; overflow-x: hidden; }
+    section { padding: 7rem 6rem; }
+
+    /* ── BANDA DE IMPACTO ── */
+    .impact-band {
+      display: flex; align-items: center; justify-content: center;
+      background: var(--gold); padding: 2.4rem 6rem; gap: 0;
+    }
+    .impact-item { flex: 1; text-align: center; padding: 0 2rem; }
+    .impact-val {
+      font-family: 'Montserrat', sans-serif; font-size: clamp(2.4rem,4vw,3.8rem);
+      font-weight: 800; color: var(--white); line-height: 1;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .impact-val span { font-size: 60%; opacity: .85; }
+    .impact-label {
+      font-family: 'Montserrat', sans-serif; font-size: .68rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,0.85);
+      margin-top: .5rem; line-height: 1.4;
+    }
+    .impact-sep { width: 1px; height: 56px; background: rgba(255,255,255,0.3); flex-shrink: 0; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: var(--white); border-bottom: 3px solid var(--blue-main);
+      border-top: 4px solid var(--gold);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6rem; height: 88px;
+      box-shadow: 0 4px 24px rgba(0,74,173,0.12);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 1.2rem;
+      text-decoration: none;
+    }
+    .nav-logo img { height: 58px; display: block; }
+    .nav-logo-text {
+      display: flex; flex-direction: column; line-height: 1.15;
+      border-left: 2px solid var(--border); padding-left: 1.2rem;
+    }
+    .nav-logo-text .nl-main {
+      font-family: 'Montserrat', sans-serif; font-size: .72rem; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--blue-dark);
+    }
+    .nav-logo-text .nl-sub {
+      font-family: 'Montserrat', sans-serif; font-size: .6rem; font-weight: 500;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted);
+      margin-top: .15rem;
+    }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif; font-size: .68rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--text-mid);
+      text-decoration: none; transition: color .2s; padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover { color: var(--blue-main); border-bottom-color: var(--blue-main); }
+    .nav-links a.ai-link { color: var(--ai-ink); }
+    .nav-links a.ai-link:hover { border-bottom-color: var(--ai-ink); }
+    .nav-cta {
+      font-family: 'Montserrat', sans-serif; font-size: .68rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; background: var(--blue-main);
+      color: var(--white); padding: .65rem 1.5rem; text-decoration: none; transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--blue-dark); }
+
+    /* ── HERO ── */
+    #inicio {
+      min-height: 100vh;
+      display: flex; align-items: center; position: relative; overflow: hidden; padding-top: 88px;
+      background: var(--blue-dark);
+    }
+    .hero-photo {
+      position: absolute; inset: 0;
+      background-image: url('assets/img/hero-california-panoramica.jpg');
+      background-size: cover; background-position: center 30%;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg, rgba(15,45,74,0.92) 0%, rgba(15,45,74,0.85) 50%, rgba(0,74,173,0.55) 100%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .hero-diag  { display: none; }
+    .hero-diag2 { display: none; }
+    .hero-content { position: relative; z-index: 2; padding: 5rem 6rem; max-width: 740px; }
+    .hero-eyebrow {
+      font-family: 'Montserrat', sans-serif; font-size: .66rem; font-weight: 700;
+      letter-spacing: .24em; text-transform: uppercase; color: var(--blue-light);
+      margin-bottom: 1.6rem; display: flex; align-items: center; gap: .8rem;
+    }
+    .hero-eyebrow::before { content:''; width:28px; height:2px; background: var(--gold); flex-shrink:0; }
+    .hero-tagline {
+      font-family: 'Montserrat', sans-serif; font-size: .85rem; font-weight: 600;
+      font-style: italic; color: var(--gold); letter-spacing: .06em; margin-bottom: 1.2rem;
+    }
+    .hero-h1 {
+      font-family: 'Montserrat', sans-serif; font-size: clamp(3.2rem,7vw,7rem);
+      font-weight: 800; line-height: .96; color: var(--white);
+      text-transform: uppercase; letter-spacing: .01em; margin-bottom: 1.8rem;
+      text-shadow: 0 4px 32px rgba(0,0,0,0.3);
+    }
+    .hero-h1 .accent { color: var(--gold); }
+    .hero-sub { font-size: .98rem; color: var(--blue-light); max-width: 520px; line-height: 1.8; margin-bottom: 2.8rem; font-weight: 300; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-gold {
+      font-family: 'Montserrat', sans-serif; font-size: .72rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; background: var(--gold);
+      color: var(--white); padding: 1rem 2.2rem; text-decoration: none; transition: background .2s; display: inline-block;
+    }
+    .btn-gold:hover { background: #a07820; }
+    .btn-outline-w {
+      font-family: 'Montserrat', sans-serif; font-size: .72rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; background: transparent;
+      color: var(--white); padding: 1rem 2.2rem; border: 2px solid rgba(255,255,255,0.38);
+      text-decoration: none; transition: all .2s; display: inline-block;
+    }
+    .btn-outline-w:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+    .hero-stats {
+      position: absolute; right: 6rem; bottom: 4rem;
+      display: flex; gap: 1.4rem; z-index: 3;
+    }
+    .hstat { text-align: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 1.1rem 1.3rem; }
+    .hstat-val { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--gold); line-height: 1; }
+    .hstat-lbl { font-family: 'Montserrat', sans-serif; font-size: .58rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--blue-light); margin-top: .4rem; }
+
+    /* ── PROBLEMA ── */
+    #problema { background: var(--off-white); border-top: 3px solid var(--blue-main); }
+    .problema-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 3.5rem; align-items: start; }
+    .callout-dark { background: var(--blue-dark); padding: 2.8rem; position: relative; overflow: hidden; }
+    .callout-dark::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background: var(--gold); }
+    .callout-dark h3 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.2rem,2.2vw,1.7rem); font-weight: 800; color: var(--white); line-height: 1.2; text-transform: uppercase; margin-bottom: 1rem; }
+    .callout-dark h3 em { font-style: normal; color: var(--gold); }
+    .callout-dark p { font-size: .88rem; color: var(--blue-light); line-height: 1.8; margin-bottom: .8rem; }
+    .callout-dark p:last-child { margin-bottom: 0; }
+    .stat-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); margin-top: 1px; }
+    .stat-box { background: var(--white); padding: 1.5rem 1.2rem; text-align: center; }
+    .stat-val { font-family: 'Montserrat', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--blue-main); line-height: 1; }
+    .stat-lbl { font-family: 'Montserrat', sans-serif; font-size: .6rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); margin-top: .4rem; }
+
+    .reason-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+    .reason-card {
+      background: var(--white);
+      padding: 2.2rem 2rem;
+      border-bottom: 3px solid transparent;
+      transition: all .25s;
+      position: relative;
+    }
+    .reason-card:hover {
+      background: var(--blue-pale);
+      border-bottom-color: var(--blue-main);
+    }
+    .reason-icon-wrap {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1.2rem;
+    }
+    .reason-icon-wrap svg {
+      width: 100%;
+      height: 100%;
+    }
+    .reason-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: .6rem; font-weight: 700;
+      letter-spacing: .18em; color: var(--blue-mid);
+      margin-bottom: .5rem;
+    }
+    .reason-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: .95rem; font-weight: 700;
+      color: var(--blue-dark); margin-bottom: .5rem;
+    }
+    .reason-card p {
+      font-size: .84rem; color: var(--text-muted); line-height: 1.72;
+    }
+    .pillar-list { margin-top: .5rem; }
+    .pillar { display: grid; grid-template-columns: 36px 1fr; gap: 1.2rem; padding: 1.7rem 0; border-bottom: 1px solid var(--border); align-items: start; }
+    .pillar:first-child { border-top: 1px solid var(--border); }
+    .pillar-num { font-family: 'Montserrat', sans-serif; font-size: .65rem; font-weight: 700; color: var(--blue-main); padding-top: .1rem; }
+    .pillar h3 { font-family: 'Montserrat', sans-serif; font-size: .93rem; font-weight: 700; color: var(--blue-dark); margin-bottom: .3rem; }
+    .pillar p { font-size: .86rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── SERVICIOS ── */
+    #servicios { background: var(--white); }
+    .sec-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; gap: 2rem; }
+    .servicios-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
+    .svc-card { background: var(--white); padding: 2.4rem 2rem; border-bottom: 3px solid transparent; transition: all .25s; }
+    .svc-card:hover { background: var(--blue-pale); border-bottom-color: var(--blue-main); }
+    .svc-svg-wrap { width: 72px; height: 72px; margin-bottom: 1.2rem; }
+    .svc-svg-wrap svg { width: 100%; height: 100%; }
+    .svc-num { font-family: 'Montserrat', sans-serif; font-size: .6rem; font-weight: 700; letter-spacing: .18em; color: var(--blue-mid); margin-bottom: .5rem; display: block; }
+    .svc-card h3 { font-family: 'Montserrat', sans-serif; font-size: .95rem; font-weight: 700; color: var(--blue-dark); margin-bottom: .7rem; }
+    .svc-card p { font-size: .84rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 1.2rem; }
+    .svc-tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .svc-tag { font-family: 'Montserrat', sans-serif; font-size: .57rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--blue-main); background: var(--blue-pale); border: 1px solid var(--blue-light); padding: .18rem .55rem; }
+    .ai-badge { background: var(--ai-bg); border-color: var(--ai-border); color: var(--ai-ink); }
+
+    /* ── SECCIÓN IA ── */
+    #ia {
+      background: var(--blue-dark);
+      position: relative;
+    }
+    #ia::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1400&q=60&auto=format&fit=crop');
+      background-size: cover; background-position: center;
+      opacity: .06;
+    }
+    #ia > * { position: relative; z-index: 1; }
+    #ia .sec-tag { color: var(--blue-light); }
+    #ia .sec-tag::before { background: var(--gold); }
+    #ia .sec-h2 { color: var(--white); }
+    #ia .sec-lead { color: var(--blue-light); }
+    .ia-intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 3.5rem; align-items: start; }
+    .ia-left p { font-size: .92rem; color: var(--blue-light); line-height: 1.85; margin-bottom: 1.2rem; }
+    .ia-results { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,0.08); }
+    .ia-result-card {
+      display: grid; grid-template-columns: 48px 1fr; gap: 1.4rem;
+      background: rgba(255,255,255,0.05); padding: 1.8rem 2rem;
+      border-left: 3px solid transparent;
+      transition: background .2s, border-color .2s;
+      align-items: start;
+    }
+    .ia-result-card:hover { background: rgba(255,255,255,0.1); border-left-color: var(--gold); }
+    .ia-result-num {
+      font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 800;
+      color: var(--gold); line-height: 1; opacity: .5; padding-top: .1rem;
+    }
+    .ia-result-body h3 {
+      font-family: 'Montserrat', sans-serif; font-size: .95rem; font-weight: 700;
+      color: var(--white); margin-bottom: .45rem;
+    }
+    .ia-result-body p { font-size: .84rem; color: var(--blue-light); line-height: 1.7; }
+    .ia-left strong { color: var(--gold); }
+    .ia-chips { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.6rem; }
+    .ia-chip {
+      font-family: 'Montserrat', sans-serif; font-size: .65rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
+      color: var(--blue-light); padding: .4rem .9rem;
+    }
+    .ia-cards { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,0.1); }
+    .ia-card { background: rgba(255,255,255,0.05); padding: 1.8rem 2rem; border-left: 3px solid transparent; transition: border-color .2s; }
+    .ia-card:hover { border-left-color: var(--gold); background: rgba(255,255,255,0.08); }
+    .ia-card-head { display: flex; align-items: center; gap: 1rem; margin-bottom: .7rem; }
+    .ia-card-icon { font-size: 1.2rem; }
+    .ia-card h3 { font-family: 'Montserrat', sans-serif; font-size: .92rem; font-weight: 700; color: var(--white); }
+    .ia-card p { font-size: .84rem; color: var(--blue-light); line-height: 1.7; }
+    .ia-disclaimer {
+      margin-top: 3.5rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 1.6rem 2rem;
+      display: flex; align-items: flex-start; gap: 1.2rem;
+    }
+    .ia-disclaimer-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: .1rem; }
+    .ia-disclaimer p { font-size: .84rem; color: var(--blue-light); line-height: 1.75; }
+    .ia-disclaimer strong { color: var(--gold); }
+
+    /* ── METODOLOGÍA ── */
+    #metodologia {
+      background: var(--off-white);
+      position: relative;
+    }
+    #metodologia::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url('assets/img/bg-soto-cortina-verde.jpg');
+      background-size: cover; background-position: center 60%;
+      opacity: .04;
+    }
+    #metodologia > * { position: relative; z-index: 1; }
+    .meto-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); margin-top: 3.5rem; }
+    .meto-card { background: var(--white); padding: 2.2rem 1.8rem; border-top: 3px solid transparent; transition: border-color .2s; }
+    .meto-card:hover { border-top-color: var(--gold); }
+    .meto-phase { font-family: 'Montserrat', sans-serif; font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: .8rem; }
+    .meto-card h3 { font-family: 'Montserrat', sans-serif; font-size: .95rem; font-weight: 700; color: var(--blue-dark); margin-bottom: .7rem; text-transform: uppercase; letter-spacing: .02em; }
+    .meto-card p { font-size: .84rem; color: var(--text-muted); line-height: 1.75; }
+
+    /* ── PROYECTOS ── */
+    #proyectos { background: #F0F4FA; }
+    .proy-row { display: grid; grid-template-columns: 3rem 1fr 1.5fr auto; gap: 1.8rem; align-items: center; padding: 1.7rem 0; border-bottom: 1px solid var(--border); transition: padding-left .2s; cursor: default; }
+    .proy-row:first-child { border-top: 1px solid var(--border); }
+    .proy-row:hover { padding-left: .5rem; }
+    .proy-num { font-family: 'Montserrat', sans-serif; font-size: .64rem; font-weight: 700; color: var(--blue-mid); }
+    .proy-name { font-family: 'Montserrat', sans-serif; font-size: .94rem; font-weight: 700; color: var(--blue-dark); }
+    .proy-desc { font-size: .86rem; color: var(--text-muted); }
+    .proy-badge { font-family: 'Montserrat', sans-serif; font-size: .57rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: .25rem .75rem; border: 1px solid; white-space: nowrap; }
+    .badge-inmob   { border-color: var(--blue-main); color: var(--blue-main); }
+    .badge-civil   { border-color: var(--text-muted); color: var(--text-muted); }
+    .badge-contrato{ border-color: var(--gold); color: var(--gold); }
+    .badge-infra   { border-color: #2a7a5c; color: #2a7a5c; }
+
+    /* ── NOSOTROS ── */
+    #nosotros { background: var(--off-white); }
+    /* Nosotros – bloque superior */
+    .nos-top { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3.5rem; align-items: start; }
+    .nos-identity p.nos-lead { font-size: .91rem; color: var(--text-mid); line-height: 1.85; margin-top: 1.2rem; }
+    .nos-identity strong { color: var(--blue-dark); }
+    .nos-principio-inner {
+      background: var(--blue-dark); padding: 2.4rem 2.6rem;
+      border-left: 4px solid var(--gold); height: 100%;
+    }
+    .nos-principio-label {
+      font-family: 'Montserrat', sans-serif; font-size: .62rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: .8rem;
+    }
+    .nos-principio-inner blockquote {
+      font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 700;
+      color: var(--white); line-height: 1.3; font-style: italic;
+      margin-bottom: 1rem; border: none; padding: 0;
+    }
+    .nos-principio-inner p { font-size: .87rem; color: var(--blue-light); line-height: 1.75; }
+
+    /* Nosotros – bloque inferior */
+    .nos-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; padding-top: 3rem; border-top: 1px solid var(--border); align-items: start; }
+    .nos-block-title {
+      font-family: 'Montserrat', sans-serif; font-size: .64rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--blue-main);
+      margin-bottom: 1.6rem; display: flex; align-items: center; gap: .7rem;
+    }
+    .nos-block-title::before { content: ''; width: 16px; height: 2px; background: var(--gold); flex-shrink: 0; }
+
+    /* Valores */
+    .valores-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
+    .valor-box { background: var(--white); padding: 1.4rem 1.3rem; transition: background .2s; }
+    .valor-box:hover { background: var(--blue-pale); }
+    .valor-icon { width: 32px; height: 32px; margin-bottom: .7rem; }
+    .valor-icon svg { width: 100%; height: 100%; }
+    .valor-box h4 { font-family: 'Montserrat', sans-serif; font-size: .82rem; font-weight: 700; color: var(--blue-dark); margin-bottom: .3rem; }
+    .valor-box p { font-size: .78rem; color: var(--text-muted); line-height: 1.6; }
+    .exp-item { padding: 1.3rem 0; border-bottom: 1px solid var(--border); }
+    .exp-item:first-child { border-top: 1px solid var(--border); }
+    .exp-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem; }
+    .exp-name { font-family: 'Montserrat', sans-serif; font-size: .86rem; font-weight: 600; color: var(--blue-dark); }
+    .exp-pct { font-family: 'Montserrat', sans-serif; font-size: .74rem; font-weight: 700; color: var(--blue-main); }
+    .exp-bar { width: 100%; height: 3px; background: var(--border); }
+    .exp-fill { height: 100%; background: linear-gradient(90deg, var(--blue-main), var(--blue-mid)); }
+
+    /* ── CONTACTO ── */
+    #contacto { background: var(--blue-dark); }
+    #contacto .sec-tag { color: var(--blue-light); }
+    #contacto .sec-tag::before { background: var(--gold); }
+    #contacto .sec-h2 { color: var(--white); }
+    .contacto-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; margin-top: 3.5rem; align-items: start; }
+    .c-left h3 { font-family: 'Montserrat', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--white); text-transform: uppercase; line-height: 1.1; margin-bottom: 1rem; }
+    .c-left p { font-size: .88rem; color: var(--blue-light); line-height: 1.8; margin-bottom: 2rem; }
+    .cinfo { display: flex; gap: .9rem; margin-bottom: 1rem; align-items: flex-start; }
+    .cinfo-badge { font-family: 'Montserrat', sans-serif; font-size: .57rem; font-weight: 700; letter-spacing: .1em; background: var(--gold); color: var(--white); padding: .2rem .55rem; white-space: nowrap; margin-top: .1rem; flex-shrink: 0; }
+    .cinfo-text { font-size: .87rem; color: var(--blue-light); line-height: 1.6; }
+    .cinfo-text strong { color: var(--white); }
+    .form-group { margin-bottom: .9rem; }
+    .form-group label { font-family: 'Montserrat', sans-serif; font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--blue-light); display: block; margin-bottom: .38rem; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; background: rgba(255,255,255,0.07); border: 1.5px solid rgba(255,255,255,0.2);
+      color: var(--white); font-family: 'Open Sans', sans-serif; font-size: .9rem;
+      padding: .78rem 1rem; outline: none; transition: border-color .2s; appearance: none;
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
+    .form-group select option { background: var(--blue-dark); color: var(--white); }
+    .form-group textarea { min-height: 115px; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-submit { width: 100%; font-family: 'Montserrat', sans-serif; font-size: .74rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; background: var(--gold); color: var(--white); border: none; padding: 1.05rem; cursor: pointer; transition: background .2s; margin-top: .4rem; }
+    .form-submit:hover { background: #a07820; }
+
+    /* ── FOOTER ── */
+    footer { background: #0f2d4a; padding: 5rem 6rem 3rem; border-top: 3px solid var(--blue-main); }
+    .footer-top { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand img { height: 38px; margin-bottom: 1rem; filter: brightness(0) invert(1); }
+    .footer-brand p { font-size: .84rem; color: var(--blue-light); line-height: 1.7; }
+    .footer-col h4 { font-family: 'Montserrat', sans-serif; font-size: .62rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .62rem; }
+    .footer-col ul a { font-size: .86rem; color: var(--blue-light); text-decoration: none; transition: color .2s; }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.8rem; display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy, .footer-reg { font-family: 'Montserrat', sans-serif; font-size: .6rem; letter-spacing: .08em; color: rgba(255,255,255,0.35); }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      nav { padding: 0 3rem; }
+      section { padding: 5rem 3rem; }
+      .hero-content { padding: 4rem 3rem; }
+      .hero-stats { right: 3rem; }
+      .meto-grid { grid-template-columns: repeat(2,1fr); }
+      .ia-intro-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-stats { display: none; }
+      .hero-h1 { font-size: clamp(2.2rem,11vw,3.8rem); }
+      .problema-grid, .nos-grid, .contacto-grid { grid-template-columns: 1fr; }
+      .servicios-grid { grid-template-columns: 1fr; }
+      .meto-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .proy-row { grid-template-columns: 2.5rem 1fr auto; }
+      .proy-desc { display: none; }
+      .valores-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <!-- NUEVA SECCIÓN INICON + IA (interactiva con IA real) -->
+  <link rel="stylesheet" href="ia-section-scoped.css" />
+  <!-- VARIANTE A · Tarjetas horizontales con KPIs (sección Proyectos rediseñada) -->
+  <link rel="stylesheet" href="proyectos-variants.css" />
+  <!-- IMPACT LAYER · amplifica tipografía, ritmo y micro-interacciones -->
+  <link rel="stylesheet" href="site-impact.css" />
+  <!-- AJUSTES POST-AUDITORÍA -->
+  <link rel="stylesheet" href="design-v3.css" />
+  <style>
+    .ia-tool-btn {
+      display: inline-block !important; font-family: 'Montserrat', sans-serif !important;
+      font-size: .66rem !important; font-weight: 700 !important; letter-spacing: .1em !important;
+      text-transform: uppercase !important; background: var(--gold) !important;
+      color: var(--white) !important; padding: .65rem 1.4rem !important;
+      text-decoration: none !important; border-bottom: none !important;
+      transition: background .2s; margin-top: auto;
+    }
+    .ia-tool-btn:hover { background: #a07820 !important; color: var(--white) !important; }
+    .wa-link {
+      display: inline-flex !important; align-items: center; gap: .5rem;
+      text-decoration: none !important; color: inherit; transition: opacity .2s;
+      border-bottom: none !important;
+    }
+    .wa-link:hover { opacity: .85; }
+    .wa-link strong { color: var(--white); }
+    .wa-icon { width: 18px !important; height: 18px !important; flex-shrink: 0; display: inline-block; }
+    .wa-label {
+      font-family: 'Montserrat', sans-serif; font-size: .58rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; color: #25D366 !important;
+    }
+  </style>
+  <style>
+    /* override: cuando .pv vive dentro de la sección del sitio, deja que la sección controle bg + padding */
+    #proyectos .pv { padding: 0; background: transparent; }
+    /* sección proyectos: padding horizontal generoso para que las tarjetas respiren */
+    #proyectos { padding-left: 6rem; padding-right: 6rem; }
+    @media (max-width: 768px) {
+      #proyectos { padding-left: 2rem; padding-right: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainnav">
+  <a href="#inicio" class="nav-logo">
+    <img src="data:image/png;base64,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" alt="INICON Ingeniería + Desarrollo S.A.S." />
+    <div class="nav-logo-text">
+      <span class="nl-main">Ingeniería + Desarrollo</span>
+      <span class="nl-sub">S.A.S. · NIT 902030543-8</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#problema">Por qué INICON</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#ia" class="ai-link">INICON + IA</a></li>
+    <li><a href="#metodologia">Metodología</a></li>
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Contactar</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="inicio">
+  <div class="hero-photo"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-diag"></div>
+  <div class="hero-diag2"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Gerencia · Construcción · Interventoría</div>
+    <div class="hero-tagline">Transformamos sus ideas en resultados tangibles</div>
+    <h1 class="hero-h1">
+      CONTROL<br>
+      <span class="accent">TOTAL</span><br>
+      DEL PROYECTO
+    </h1>
+    <p class="hero-sub">
+      Firma de Ingeniería especializada en formulación, diseño, gestión, ejecución e interventoría.
+      Más de 30 años de experiencia en infraestructura y desarrollo inmobiliario en Colombia,
+      potenciados hoy con Inteligencia Artificial.
+    </p>
+    <div class="hero-btns">
+      <a href="#servicios" class="btn-gold">Ver Servicios</a>
+      <a href="#contacto" class="btn-outline-w">Solicitar Diagnóstico</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-val">30+</div><div class="hstat-lbl">Años experiencia</div></div>
+    <div class="hstat"><div class="hstat-val">MSc</div><div class="hstat-lbl">Ger. Proyectos · EAFIT</div></div>
+    <div class="hstat"><div class="hstat-val">IA</div><div class="hstat-lbl">Potenciado por</div></div>
+  </div>
+</section>
+
+<!-- BANDA DE IMPACTO -->
+<div class="impact-band">
+  <div class="impact-item">
+    <div class="impact-val">30<span>+</span></div>
+    <div class="impact-label">Años de experiencia en obra</div>
+  </div>
+  <div class="impact-sep"></div>
+  <div class="impact-item">
+    <div class="impact-val">100<span>%</span></div>
+    <div class="impact-label">Independencia en interventoría</div>
+  </div>
+  <div class="impact-sep"></div>
+  <div class="impact-item">
+    <div class="impact-val">5</div>
+    <div class="impact-label">Servicios integrados de ingeniería</div>
+  </div>
+  <div class="impact-sep"></div>
+  <div class="impact-item">
+    <div class="impact-val">IA</div>
+    <div class="impact-label">Potenciado con Inteligencia Artificial</div>
+  </div>
+</div>
+
+<!-- EL PROBLEMA -->
+<section id="problema" data-chapter="01">
+  <div class="problema-grid">
+    <div class="reveal">
+      <div class="sec-tag">El problema que resolvemos</div>
+      <h2 class="sec-h2">Por qué<br>INICON</h2>
+      <div class="reason-grid" style="margin-top:2rem;">
+
+        <div class="reason-card">
+          <div class="reason-icon-wrap">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="28" width="10" height="28" rx="2" fill="#004AAD" opacity=".15"/>
+              <rect x="22" y="18" width="10" height="38" rx="2" fill="#004AAD" opacity=".35"/>
+              <rect x="36" y="8" width="10" height="48" rx="2" fill="#004AAD" opacity=".6"/>
+              <rect x="50" y="16" width="10" height="40" rx="2" fill="#C8982A"/>
+              <polyline points="8,44 22,30 36,20 50,28" stroke="#1F4E79" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="50" cy="28" r="4" fill="#C8982A"/>
+              <line x1="4" y1="58" x2="60" y2="58" stroke="#D0DCF0" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="reason-num">01</div>
+          <h3>Sobrecostos del 15–30%</h3>
+          <p>La mayoría de proyectos en Colombia exceden su presupuesto inicial. La causa no es técnica — es la gestión.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-icon-wrap">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="10" width="44" height="44" rx="3" stroke="#004AAD" stroke-width="2" fill="#EEF4FB"/>
+              <line x1="10" y1="22" x2="54" y2="22" stroke="#D0DCF0" stroke-width="1.5"/>
+              <rect x="18" y="30" width="28" height="3" rx="1.5" fill="#004AAD" opacity=".3"/>
+              <rect x="18" y="38" width="18" height="3" rx="1.5" fill="#004AAD" opacity=".3"/>
+              <circle cx="46" cy="46" r="12" fill="#C8982A"/>
+              <line x1="46" y1="40" x2="46" y2="46" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="46" cy="50" r="1.5" fill="white"/>
+            </svg>
+          </div>
+          <div class="reason-num">02</div>
+          <h3>Contratos mal estructurados</h3>
+          <p>Obligaciones sin seguimiento y cronogramas sin método generan un ciclo de incertidumbre que se traduce en riesgo financiero.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-icon-wrap">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="32" r="20" stroke="#004AAD" stroke-width="2" fill="#EEF4FB"/>
+              <circle cx="32" cy="32" r="12" stroke="#004AAD" stroke-width="1.5" fill="none" opacity=".4"/>
+              <circle cx="32" cy="32" r="5" fill="#004AAD"/>
+              <line x1="32" y1="12" x2="32" y2="18" stroke="#004AAD" stroke-width="2" stroke-linecap="round"/>
+              <line x1="32" y1="46" x2="32" y2="52" stroke="#004AAD" stroke-width="2" stroke-linecap="round"/>
+              <line x1="12" y1="32" x2="18" y2="32" stroke="#004AAD" stroke-width="2" stroke-linecap="round"/>
+              <line x1="46" y1="32" x2="52" y2="32" stroke="#004AAD" stroke-width="2" stroke-linecap="round"/>
+              <path d="M38 26 L52 12" stroke="#C8982A" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="54" cy="10" r="4" fill="#C8982A"/>
+            </svg>
+          </div>
+          <div class="reason-num">03</div>
+          <h3>Interventorías que no controlan</h3>
+          <p>INICON opera con independencia total: nuestros informes sirven a quien invierte, no a quien construye.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-icon-wrap">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="14" width="48" height="32" rx="3" stroke="#004AAD" stroke-width="2" fill="#EEF4FB"/>
+              <rect x="14" y="20" width="16" height="10" rx="1.5" fill="#004AAD" opacity=".15"/>
+              <rect x="34" y="20" width="16" height="4" rx="1.5" fill="#004AAD" opacity=".3"/>
+              <rect x="34" y="27" width="10" height="3" rx="1.5" fill="#C8982A" opacity=".7"/>
+              <polyline points="14,38 22,30 28,34 36,24 42,28 50,20" stroke="#C8982A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="24" y1="46" x2="40" y2="46" stroke="#004AAD" stroke-width="2" stroke-linecap="round"/>
+              <line x1="32" y1="46" x2="32" y2="52" stroke="#004AAD" stroke-width="2"/>
+              <line x1="20" y1="52" x2="44" y2="52" stroke="#004AAD" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="reason-num">04</div>
+          <h3>Decisiones sin información</h3>
+          <p>INICON entrega datos en tiempo real, reportes ejecutivos y alertas — no solo visitas de obra.</p>
+        </div>
+
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.15s">
+      <div class="callout-dark">
+        <h3>El problema no es<br>la obra.<br>Es la <em>gestión.</em></h3>
+        <p>Diseños desconectados de la realidad operativa y financiera de quien toma decisiones generan un ciclo donde la incertidumbre se traduce directamente en riesgo no cuantificado.</p>
+        <p>INICON rompe ese ciclo con previsibilidad cuantificada: datos, estructura contractual y control en tiempo real.</p>
+      </div>
+      <div class="stat-strip">
+        <div class="stat-box">
+          <div class="stat-val">30+</div>
+          <div class="stat-lbl">Años en campo</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val">MSc</div>
+          <div class="stat-lbl">Ger. Proyectos</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val">NIT</div>
+          <div class="stat-lbl">902030543-8</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" data-chapter="02">
+  <div class="sec-header reveal">
+    <div>
+      <div class="sec-tag">Lo que hacemos</div>
+      <h2 class="sec-h2">Servicios</h2>
+    </div>
+    <p class="sec-lead" style="max-width:340px;">Formulación · Diseño · Gestión · Ejecución · Interventoría. Cada servicio entrega control medible, no solo acompañamiento.</p>
+  </div>
+  <div class="servicios-grid">
+
+    <!-- SVC 01 Gerencia de Proyectos (fusionado) -->
+    <div class="svc-card reveal">
+      <div class="svc-svg-wrap">
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Documento contrato -->
+          <rect x="8" y="10" width="30" height="38" rx="2.5" fill="#EEF4FB" stroke="#004AAD" stroke-width="1.6"/>
+          <line x1="8" y1="20" x2="38" y2="20" stroke="#D0DCF0" stroke-width="1.2"/>
+          <rect x="14" y="27" width="16" height="2.5" rx="1.2" fill="#004AAD" opacity=".35"/>
+          <rect x="14" y="33" width="20" height="2.5" rx="1.2" fill="#004AAD" opacity=".2"/>
+          <rect x="14" y="39" width="12" height="2.5" rx="1.2" fill="#004AAD" opacity=".2"/>
+          <!-- Reloj / cronograma -->
+          <circle cx="52" cy="28" r="16" fill="#EEF4FB" stroke="#004AAD" stroke-width="1.6"/>
+          <line x1="52" y1="14" x2="52" y2="28" stroke="#004AAD" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="52" y1="28" x2="62" y2="34" stroke="#C8982A" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="52" cy="28" r="2.8" fill="#1F4E79"/>
+          <!-- Conector -->
+          <line x1="38" y1="32" x2="36" y2="32" stroke="#004AAD" stroke-width="1.5" stroke-dasharray="3 2"/>
+          <!-- Check dorado abajo -->
+          <circle cx="52" cy="58" r="10" fill="#C8982A"/>
+          <polyline points="46,58 50,62 58,54" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="svc-num">SVC — 01</div>
+      <h3>Gerencia de Proyectos</h3>
+      <p>Dirección integral de proyectos y contratos bajo estándares PMI. Estructuración, planificación, seguimiento de avance, control de presupuesto, gestión de riesgos y liquidación contractual sin sorpresas.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">PMI · WBS · EVM</span>
+        <span class="svc-tag">Contratos</span>
+        <span class="svc-tag">Riesgos</span>
+        <span class="svc-tag">Liquidación</span>
+      </div>
+    </div>
+
+    <!-- SVC 03 Interventoría -->
+    <div class="svc-card reveal" style="transition-delay:.16s">
+      <div class="svc-svg-wrap">
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="38" width="52" height="26" rx="2" fill="#EEF4FB" stroke="#004AAD" stroke-width="1.8"/>
+          <polygon points="36,8 10,38 62,38" fill="#004AAD" opacity=".12" stroke="#004AAD" stroke-width="1.8" stroke-linejoin="round"/>
+          <line x1="36" y1="8" x2="36" y2="22" stroke="#004AAD" stroke-width="1.5" stroke-linecap="round"/>
+          <rect x="28" y="50" width="16" height="14" rx="2" fill="#004AAD" opacity=".2"/>
+          <line x1="22" y1="50" x2="22" y2="64" stroke="#004AAD" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="50" y1="50" x2="50" y2="64" stroke="#004AAD" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="54" cy="20" r="10" fill="#C8982A"/>
+          <polyline points="49,20 53,24 60,16" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="svc-num">SVC — 02</div>
+      <h3>Interventoría Técnica</h3>
+      <p>Supervisión independiente de obras civiles y edificaciones. Verificación de especificaciones, control de calidad y cumplimiento NSR-10.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">NSR-10</span>
+        <span class="svc-tag">Calidad</span>
+        <span class="svc-tag">Control de Obra</span>
+      </div>
+    </div>
+
+    <!-- SVC 04 Consultoría -->
+    <div class="svc-card reveal">
+      <div class="svc-svg-wrap">
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="28" cy="28" r="16" fill="#EEF4FB" stroke="#004AAD" stroke-width="1.8"/>
+          <line x1="39" y1="39" x2="58" y2="58" stroke="#004AAD" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="28" y1="22" x2="28" y2="28" stroke="#004AAD" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="28" cy="33" r="1.8" fill="#004AAD"/>
+          <circle cx="58" cy="58" r="5" fill="#C8982A"/>
+        </svg>
+      </div>
+      <div class="svc-num">SVC — 03</div>
+      <h3>Consultoría Técnica</h3>
+      <p>Asesoría especializada para propietarios, fiducias e inversionistas. Revisión de presupuestos, análisis de ofertas y resolución de conflictos técnicos en obra.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Presupuestos</span>
+        <span class="svc-tag">APU</span>
+        <span class="svc-tag">Conciliación</span>
+      </div>
+    </div>
+
+    <!-- SVC 05 Desarrollo Inmobiliario -->
+    <div class="svc-card reveal" style="transition-delay:.08s">
+      <div class="svc-svg-wrap">
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="32" width="24" height="32" rx="2" fill="#EEF4FB" stroke="#004AAD" stroke-width="1.8"/>
+          <rect x="36" y="20" width="28" height="44" rx="2" fill="#EEF4FB" stroke="#004AAD" stroke-width="1.8"/>
+          <rect x="14" y="42" width="8" height="10" rx="1" fill="#004AAD" opacity=".25"/>
+          <rect x="42" y="30" width="8" height="8" rx="1" fill="#004AAD" opacity=".25"/>
+          <rect x="54" y="30" width="4" height="8" rx="1" fill="#004AAD" opacity=".15"/>
+          <rect x="42" y="44" width="8" height="8" rx="1" fill="#004AAD" opacity=".25"/>
+          <rect x="54" y="44" width="4" height="8" rx="1" fill="#004AAD" opacity=".15"/>
+          <rect x="44" y="56" width="12" height="8" rx="1" fill="#C8982A" opacity=".5"/>
+          <polyline points="4,32 20,16 32,32" stroke="#C8982A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="32,20 50,6 68,20" stroke="#004AAD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="svc-num">SVC — 04</div>
+      <h3>Desarrollo Inmobiliario</h3>
+      <p>Gestión de proyectos residenciales y comerciales desde estructuración legal y financiera hasta entrega. Viabilidad, licencias, interventoría y gerencia integrada.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Viabilidad</span>
+        <span class="svc-tag">Licencias</span>
+        <span class="svc-tag">Fiducia</span>
+      </div>
+    </div>
+
+    <!-- SVC 06 Construcción Obras Civiles -->
+    <div class="svc-card reveal" style="transition-delay:.16s">
+      <div class="svc-svg-wrap">
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="52" width="56" height="12" rx="2" fill="#004AAD" opacity=".15"/>
+          <rect x="16" y="28" width="12" height="24" rx="1.5" fill="#EEF4FB" stroke="#004AAD" stroke-width="1.6"/>
+          <rect x="32" y="18" width="12" height="34" rx="1.5" fill="#EEF4FB" stroke="#004AAD" stroke-width="1.6"/>
+          <rect x="48" y="34" width="10" height="18" rx="1.5" fill="#EEF4FB" stroke="#004AAD" stroke-width="1.6"/>
+          <line x1="8" y1="52" x2="64" y2="52" stroke="#004AAD" stroke-width="2" stroke-linecap="round"/>
+          <rect x="20" y="36" width="4" height="6" rx="1" fill="#004AAD" opacity=".3"/>
+          <rect x="36" y="28" width="4" height="6" rx="1" fill="#004AAD" opacity=".3"/>
+          <rect x="36" y="38" width="4" height="6" rx="1" fill="#004AAD" opacity=".3"/>
+          <line x1="10" y1="28" x2="62" y2="28" stroke="#C8982A" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 3"/>
+          <circle cx="10" cy="28" r="3" fill="#C8982A"/>
+          <circle cx="62" cy="28" r="3" fill="#C8982A"/>
+        </svg>
+      </div>
+      <div class="svc-num">SVC — 05</div>
+      <h3>Construcción de Obras Civiles</h3>
+      <p>Ejecución directa de obras civiles, edificaciones e infraestructura con los más altos estándares de calidad, seguridad y cumplimiento normativo.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Obra Civil</span>
+        <span class="svc-tag">NSR-10</span>
+        <span class="svc-tag">Infraestructura</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- INICON + IA · 5 asistentes especializados -->
+<section id="ia" class="ia-section" data-chapter="03">
+  <div class="ia-bg-photo"></div>
+  <div class="ia-bg-grid"></div>
+
+  <div class="ia-container">
+
+    <!-- HEADER -->
+    <div class="ia-header">
+      <div class="sec-tag">Diferenciador tecnológico</div>
+      <h2 class="ia-h2">INICON <span class="plus">+</span> <span class="ia-word">IA</span></h2>
+      <p class="ia-lead">
+        INICON ha construido un equipo de <strong>cinco asistentes especializados</strong> apoyados en
+        Inteligencia Artificial. Cada uno opera en un dominio específico del proyecto — desde la
+        licitación hasta la evaluación de planes de negocio.
+      </p>
+    </div>
+
+    <!-- MANIFESTO -->
+    <div class="ia-manifest">
+      <div>
+        <div class="ia-manifest-label">// NUESTRA POSTURA</div>
+        <p>
+          La IA no reemplaza a nuestros especialistas. <strong>Trabaja al lado de la persona</strong>,
+          ampliando capacidad de análisis y reduciendo tiempo en lo repetitivo.
+        </p>
+      </div>
+      <div>
+        <div class="ia-manifest-label">// LÍMITE CLARO</div>
+        <p>
+          El <em>criterio técnico</em> sigue siendo de quien firma. La <em>velocidad y
+          consistencia</em>, del asistente. Esa división no se negocia.
+        </p>
+      </div>
+    </div>
+
+    <!-- ASSISTANTS GRID -->
+    <div class="ia-grid-label">EQUIPO DE ASISTENTES INICON+IA · 05 ESPECIALISTAS</div>
+
+    <div class="ia-assistants">
+
+      <!-- 01 -->
+      <article class="ia-asst">
+        <div class="ia-asst-phase">FASE · PRE-CONTRATO</div>
+        <div class="ia-asst-head">
+          <div class="ia-asst-num">01</div>
+          <div class="ia-asst-tag">ASISTENTE</div>
+        </div>
+        <div class="ia-asst-icon">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="8" width="34" height="42" fill="rgba(255,255,255,0.10)" stroke="#D6E4F5" stroke-width="1.5"/>
+            <line x1="14" y1="18" x2="36" y2="18" stroke="#D6E4F5" stroke-width="1"/>
+            <line x1="14" y1="24" x2="32" y2="24" stroke="#D6E4F5" stroke-width="1"/>
+            <line x1="14" y1="30" x2="34" y2="30" stroke="#D6E4F5" stroke-width="1"/>
+            <line x1="14" y1="36" x2="28" y2="36" stroke="#D6E4F5" stroke-width="1"/>
+            <circle cx="44" cy="42" r="11" fill="rgba(200,152,42,0.18)" stroke="#C8982A" stroke-width="2"/>
+            <line x1="52" y1="50" x2="58" y2="56" stroke="#C8982A" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="44" cy="42" r="2.5" fill="#C8982A"/>
+          </svg>
+        </div>
+        <h3 class="ia-asst-role">Analista de Propuestas y Licitaciones</h3>
+        <p class="ia-asst-desc">
+          Apoyo en revisión exhaustiva de pliegos, identificación de requisitos contractuales y
+          técnicos, y estructuración de propuestas competitivas alineadas al objeto contractual.
+        </p>
+        <div class="ia-asst-foot">
+          <div class="ia-asst-foot-label">SOPORTA EN</div>
+          <div class="ia-asst-tags">
+            <span class="ia-asst-chip">Pliegos</span>
+            <span class="ia-asst-chip">Requisitos</span>
+            <span class="ia-asst-chip">Cumplimiento</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 -->
+      <article class="ia-asst">
+        <div class="ia-asst-phase">FASE · TRANSVERSAL</div>
+        <div class="ia-asst-head">
+          <div class="ia-asst-num">02</div>
+          <div class="ia-asst-tag">ASISTENTE</div>
+        </div>
+        <div class="ia-asst-icon">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="32,8 58,52 6,52" fill="rgba(255,255,255,0.10)" stroke="#D6E4F5" stroke-width="1.5" stroke-linejoin="round"/>
+            <rect x="22" y="38" width="4" height="10" fill="rgba(255,255,255,0.30)"/>
+            <rect x="30" y="30" width="4" height="18" fill="rgba(255,255,255,0.50)"/>
+            <rect x="38" y="22" width="4" height="26" fill="#C8982A"/>
+            <circle cx="32" cy="15" r="3" fill="#C8982A"/>
+          </svg>
+        </div>
+        <h3 class="ia-asst-role">Analista de Gestión de Riesgos</h3>
+        <p class="ia-asst-desc">
+          Identificación, clasificación y priorización de riesgos contractuales, técnicos,
+          financieros y de cronograma. Propuesta de planes de mitigación y contingencia.
+        </p>
+        <div class="ia-asst-foot">
+          <div class="ia-asst-foot-label">SOPORTA EN</div>
+          <div class="ia-asst-tags">
+            <span class="ia-asst-chip">Matriz P/I</span>
+            <span class="ia-asst-chip">Mitigación</span>
+            <span class="ia-asst-chip">Contingencia</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 03 -->
+      <article class="ia-asst">
+        <div class="ia-asst-phase">FASE · EJECUCIÓN</div>
+        <div class="ia-asst-head">
+          <div class="ia-asst-num">03</div>
+          <div class="ia-asst-tag">ASISTENTE</div>
+        </div>
+        <div class="ia-asst-icon">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="12" width="42" height="38" fill="rgba(255,255,255,0.08)" stroke="#D6E4F5" stroke-width="1.5"/>
+            <line x1="8" y1="22" x2="50" y2="22" stroke="#D6E4F5" stroke-width="1"/>
+            <line x1="8" y1="32" x2="50" y2="32" stroke="#D6E4F5" stroke-width="1"/>
+            <line x1="8" y1="42" x2="50" y2="42" stroke="#D6E4F5" stroke-width="1"/>
+            <line x1="18" y1="12" x2="18" y2="50" stroke="#D6E4F5" stroke-width="1"/>
+            <line x1="30" y1="12" x2="30" y2="50" stroke="#D6E4F5" stroke-width="1"/>
+            <line x1="42" y1="12" x2="42" y2="50" stroke="#D6E4F5" stroke-width="1"/>
+            <line x1="46" y1="50" x2="58" y2="38" stroke="#C8982A" stroke-width="3" stroke-linecap="round"/>
+            <polygon points="58,38 56,38 58,40" fill="#C8982A"/>
+          </svg>
+        </div>
+        <h3 class="ia-asst-role">Asistente de Dirección Técnica</h3>
+        <p class="ia-asst-desc">
+          Soporte en revisión de diseños, validación de especificaciones técnicas, control
+          de calidad de obra y seguimiento de cronograma bajo normativa NSR-10.
+        </p>
+        <div class="ia-asst-foot">
+          <div class="ia-asst-foot-label">SOPORTA EN</div>
+          <div class="ia-asst-tags">
+            <span class="ia-asst-chip">Diseños</span>
+            <span class="ia-asst-chip">NSR-10</span>
+            <span class="ia-asst-chip">Calidad</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 04 -->
+      <article class="ia-asst">
+        <div class="ia-asst-phase">FASE · EJECUCIÓN</div>
+        <div class="ia-asst-head">
+          <div class="ia-asst-num">04</div>
+          <div class="ia-asst-tag">ASISTENTE</div>
+        </div>
+        <div class="ia-asst-icon">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="22" y="22" width="34" height="34" fill="rgba(255,255,255,0.10)" stroke="#D6E4F5" stroke-width="1.5"/>
+            <rect x="28" y="30" width="5" height="5" fill="rgba(255,255,255,0.35)"/>
+            <rect x="36" y="30" width="5" height="5" fill="rgba(255,255,255,0.35)"/>
+            <rect x="44" y="30" width="5" height="5" fill="rgba(255,255,255,0.35)"/>
+            <rect x="28" y="40" width="5" height="5" fill="rgba(255,255,255,0.35)"/>
+            <rect x="36" y="40" width="5" height="5" fill="rgba(255,255,255,0.35)"/>
+            <rect x="44" y="40" width="5" height="5" fill="rgba(255,255,255,0.35)"/>
+            <rect x="6" y="10" width="18" height="24" fill="rgba(200,152,42,0.15)" stroke="#C8982A" stroke-width="1.5"/>
+            <line x1="10" y1="16" x2="20" y2="16" stroke="#D6E4F5" stroke-width="1"/>
+            <line x1="10" y1="21" x2="18" y2="21" stroke="#D6E4F5" stroke-width="1"/>
+            <polyline points="10,28 14,32 20,24" stroke="#C8982A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="ia-asst-role">Asistente de Dirección de Interventoría</h3>
+        <p class="ia-asst-desc">
+          Apoyo en supervisión técnica independiente, revisión de actas y bitácoras,
+          verificación de cumplimiento normativo y elaboración de informes ejecutivos.
+        </p>
+        <div class="ia-asst-foot">
+          <div class="ia-asst-foot-label">SOPORTA EN</div>
+          <div class="ia-asst-tags">
+            <span class="ia-asst-chip">Actas</span>
+            <span class="ia-asst-chip">Bitácora</span>
+            <span class="ia-asst-chip">Informes</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 05 -->
+      <article class="ia-asst">
+        <div class="ia-asst-phase">FASE · VIABILIDAD</div>
+        <div class="ia-asst-head">
+          <div class="ia-asst-num">05</div>
+          <div class="ia-asst-tag">ASISTENTE</div>
+        </div>
+        <div class="ia-asst-icon">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="10" width="36" height="44" fill="rgba(255,255,255,0.08)" stroke="#D6E4F5" stroke-width="1.5"/>
+            <line x1="14" y1="18" x2="30" y2="18" stroke="#D6E4F5" stroke-width="1"/>
+            <polyline points="14,46 20,40 26,42 32,32 38,28" stroke="#C8982A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="38" cy="28" r="3" fill="#C8982A"/>
+            <polygon points="52,14 54,20 60,20 55,24 57,30 52,26 47,30 49,24 44,20 50,20" fill="#C8982A"/>
+          </svg>
+        </div>
+        <h3 class="ia-asst-role">Experto en Proyectos y Evaluación de Planes de Negocio</h3>
+        <p class="ia-asst-desc">
+          Análisis de viabilidad técnico-financiera, evaluación de modelos de negocio y
+          estructuración integral de proyectos inmobiliarios e infraestructura.
+        </p>
+        <div class="ia-asst-foot">
+          <div class="ia-asst-foot-label">SOPORTA EN</div>
+          <div class="ia-asst-tags">
+            <span class="ia-asst-chip">Viabilidad</span>
+            <span class="ia-asst-chip">Modelo financiero</span>
+            <span class="ia-asst-chip">Estructuración</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 06 · CTA tile -->
+      <a href="#contacto" class="ia-asst ia-asst-cta">
+        <div class="ia-asst-phase">SEGÚN PROYECTO</div>
+        <div class="ia-asst-head">
+          <div class="ia-asst-num">+</div>
+          <div class="ia-asst-tag">AMPLIACIÓN DEL EQUIPO</div>
+        </div>
+        <div class="ia-asst-icon">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="22" fill="rgba(200,152,42,0.12)" stroke="#C8982A" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <line x1="32" y1="22" x2="32" y2="42" stroke="#C8982A" stroke-width="3" stroke-linecap="round"/>
+            <line x1="22" y1="32" x2="42" y2="32" stroke="#C8982A" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="ia-asst-role">Si el proyecto lo requiere, sumamos otro</h3>
+        <p class="ia-asst-desc">
+          Cuando un proyecto INICON necesita capacidades de análisis o documentación que
+          ninguno de los anteriores cubre, construimos el asistente que corresponda. Forma
+          parte de cómo entregamos cada contrato — no de un catálogo de servicios.
+        </p>
+        <div class="ia-asst-foot">
+          <div class="ia-asst-cta-link">
+            Hablemos del proyecto
+            <span class="ia-asst-cta-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- HERRAMIENTAS PÚBLICAS -->
+    <div class="ia-grid-label" style="margin-top:3.5rem">HERRAMIENTAS PÚBLICAS DESARROLLADAS POR INICON</div>
+    <div class="ia-tools">
+
+      <div class="ia-tool-card">
+        <div class="ia-tool-type">Simulación de riesgos</div>
+        <div class="ia-tool-icon">
+          <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="6" y1="43" x2="46" y2="43" stroke="#D6E4F5" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M6 41 Q12 41 18 28 Q22 17 26 13 Q30 17 34 28 Q40 41 46 41" stroke="#C8982A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <line x1="26" y1="13" x2="26" y2="43" stroke="#C8982A" stroke-width="1" stroke-dasharray="2 2" opacity=".45"/>
+            <circle cx="13" cy="39" r="1.5" fill="#D6E4F5" opacity=".55"/>
+            <circle cx="20" cy="29" r="1.5" fill="#D6E4F5" opacity=".55"/>
+            <circle cx="26" cy="15" r="2.2" fill="#C8982A"/>
+            <circle cx="32" cy="27" r="1.5" fill="#D6E4F5" opacity=".55"/>
+            <circle cx="39" cy="37" r="1.5" fill="#D6E4F5" opacity=".55"/>
+          </svg>
+        </div>
+        <h3 class="ia-tool-name">Simulador Monte Carlo para Excel</h3>
+        <p class="ia-tool-desc">
+          Carga tu modelo Excel, define las distribuciones de probabilidad de cada variable de
+          entrada y ejecuta miles de escenarios. Entrega la distribución real del riesgo
+          financiero o de cronograma — procesado localmente, sin enviar datos a ningún servidor.
+        </p>
+        <div class="ia-tool-chips">
+          <span class="ia-asst-chip">Riesgo financiero</span>
+          <span class="ia-asst-chip">Cronograma</span>
+          <span class="ia-asst-chip">Excel · xlsx</span>
+        </div>
+        <a href="https://montecarlo.inicon.com.co/" target="_blank" rel="noopener" class="ia-tool-btn">
+          Abrir herramienta →
+        </a>
+      </div>
+
+      <div class="ia-tool-card">
+        <div class="ia-tool-type">Modelo financiero</div>
+        <div class="ia-tool-icon">
+          <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="8" y1="16" x2="44" y2="16" stroke="#D6E4F5" stroke-width="1.5" stroke-linecap="round" opacity=".45"/>
+            <line x1="8" y1="27" x2="44" y2="27" stroke="#D6E4F5" stroke-width="1.5" stroke-linecap="round" opacity=".45"/>
+            <line x1="8" y1="38" x2="44" y2="38" stroke="#D6E4F5" stroke-width="1.5" stroke-linecap="round" opacity=".45"/>
+            <line x1="8" y1="16" x2="30" y2="16" stroke="#C8982A" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="8" y1="27" x2="19" y2="27" stroke="#C8982A" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="8" y1="38" x2="37" y2="38" stroke="#C8982A" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="30" cy="16" r="3.5" fill="#C8982A" stroke="#1F4E79" stroke-width="1.2"/>
+            <circle cx="19" cy="27" r="3.5" fill="#C8982A" stroke="#1F4E79" stroke-width="1.2"/>
+            <circle cx="37" cy="38" r="3.5" fill="#C8982A" stroke="#1F4E79" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <h3 class="ia-tool-name">Modelo Financiero Inmobiliario</h3>
+        <p class="ia-tool-desc">
+          Calcula la viabilidad de un proyecto inmobiliario en Colombia en tiempo real:
+          retornos, flujo de caja, punto de equilibrio y análisis de sensibilidad.
+          Sliders interactivos, resultados instantáneos en COP o USD.
+        </p>
+        <div class="ia-tool-chips">
+          <span class="ia-asst-chip">Viabilidad</span>
+          <span class="ia-asst-chip">Flujo de caja</span>
+          <span class="ia-asst-chip">COP · USD</span>
+        </div>
+        <a href="https://modelo.inicon.com.co/" target="_blank" rel="noopener" class="ia-tool-btn">
+          Abrir herramienta →
+        </a>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM FRAMING -->
+    <div class="ia-bottom">
+      <div class="ia-bottom-cell">
+        <div class="ia-bottom-cell-label">// QUÉ NO HACEN</div>
+        <div class="ia-bottom-cell-text">
+          No firman documentos, no toman decisiones técnicas y no sustituyen a un
+          interventor o director de obra. <strong>Apoyan al especialista — no lo reemplazan.</strong>
+        </div>
+      </div>
+      <div class="ia-bottom-cell">
+        <div class="ia-bottom-cell-label">// QUÉ SÍ HACEN</div>
+        <div class="ia-bottom-cell-text">
+          Reducen el tiempo de revisión documental, ganan consistencia en informes,
+          aceleran la detección de riesgos y permiten que <strong>el equipo se concentre
+          en lo que agrega valor.</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="ia-foot">// IA como herramienta operativa interna · no como promesa de marketing</div>
+
+  </div>
+</section>
+
+<!-- METODOLOGÍA -->
+<section id="metodologia" data-chapter="04">
+  <div class="reveal">
+    <div class="sec-tag">Cómo trabajamos</div>
+    <h2 class="sec-h2">Metodología</h2>
+    <p class="sec-lead">Un sistema de gestión que produce resultados predecibles, no promesas.</p>
+  </div>
+  <div class="meto-grid">
+    <div class="meto-card reveal">
+      <div class="meto-phase">Fase 01</div>
+      <h3>Diagnóstico y Estructuración</h3>
+      <p>Revisión exhaustiva de contratos, presupuestos y cronogramas. Identificación de riesgos contractuales y exposición financiera antes de que el proyecto arranque.</p>
+    </div>
+    <div class="meto-card reveal" style="transition-delay:.08s">
+      <div class="meto-phase">Fase 02</div>
+      <h3>Control Integrado</h3>
+      <p>Seguimiento simultáneo de alcance, tiempo y costo con métricas EVM. Informes ejecutivos con semáforo de alerta y actas con compromisos firmados.</p>
+    </div>
+    <div class="meto-card reveal" style="transition-delay:.16s">
+      <div class="meto-phase">Fase 03</div>
+      <h3>Gestión de Riesgos Activa</h3>
+      <p>Registro de riesgos actualizado semanalmente. Planes de contingencia predefinidos. Cuando el riesgo se materializa, INICON ya tiene la respuesta lista — no improvisa.</p>
+    </div>
+    <div class="meto-card reveal" style="transition-delay:.24s">
+      <div class="meto-phase">Fase 04</div>
+      <h3>Cierre y Lecciones Aprendidas</h3>
+      <p>Liquidación contractual limpia: actas de recibo, paz y salvos, dossier técnico completo. Sin cola judicial, sin reclamaciones abiertas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS · Rediseñado: tarjetas horizontales con KPIs verificables -->
+<section id="proyectos" data-chapter="05">
+  <div class="pv pv-a">
+    <div class="pv-head">
+      <div class="pv-eyebrow"><span></span>Track record</div>
+      <h2 class="pv-h2">Proyectos</h2>
+      <p class="pv-lead">
+        Cada caso entrega control medible — no solo experiencia. Cifras verificables
+        de gerencia, interventoría y ejecución directa en infraestructura, obra civil,
+        peritaje y desarrollo inmobiliario.
+      </p>
+      <div class="pv-meta">
+        <span><strong>05</strong> proyectos recientes</span>
+        <span><strong>04</strong> categorías</span>
+        <span><strong>30+</strong> años acumulados</span>
+      </div>
+    </div>
+
+    <div class="pv-a-list">
+
+      <!-- 01 · Urbanización Parma de Valladolid -->
+      <article class="pv-a-card">
+        <div class="pv-a-photo">
+          <img src="assets/img/card-parma-filtro-frances.jpg" alt="Filtro francés perimetral terminado en la Urbanización Parma de Valladolid" />
+        </div>
+        <div class="pv-a-body">
+          <div class="pv-a-top">
+            <div class="pv-a-num">01</div>
+            <div class="pv-a-year">2026</div>
+            <div class="pv-badge bg-civil">INTERVENTORÍA</div>
+          </div>
+          <h3 class="pv-a-title">Urbanización Parma de Valladolid</h3>
+          <div class="pv-a-sub">Interventoría integral — Filtro francés perimetral</div>
+          <div class="pv-a-client">Bloques habitacionales · Medellín, Antioquia</div>
+
+          <div class="pv-a-kpis">
+            <div class="pv-a-kpi"><div class="pv-a-kpi-v">Integral</div><div class="pv-a-kpi-l">control técnico y administrativo</div></div>
+            <div class="pv-a-kpi"><div class="pv-a-kpi-v">Perimetral</div><div class="pv-a-kpi-l">subdrenaje de los bloques</div></div>
+            <div class="pv-a-kpi"><div class="pv-a-kpi-v">Recibida</div><div class="pv-a-kpi-l">obra entregada a satisfacción</div></div>
+          </div>
+
+          <div class="pv-a-note">
+            Interventoría integral a la construcción de filtro francés perimetral a los bloques
+            habitacionales: control técnico, administrativo y de calidad del sistema de subdrenaje.
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 · Estabilización de Taludes -->
+      <article class="pv-a-card">
+        <div class="pv-a-photo">
+          <img src="assets/img/card-soto-muro-contencion.jpg" alt="Muro de contención en suelo reforzado y talud protegido en Soto del Este, El Retiro" />
+        </div>
+        <div class="pv-a-body">
+          <div class="pv-a-top">
+            <div class="pv-a-num">02</div>
+            <div class="pv-a-year">2026</div>
+            <div class="pv-badge bg-civil">CIVIL · GEOTECNIA</div>
+          </div>
+          <h3 class="pv-a-title">Estabilización de Taludes</h3>
+          <div class="pv-a-sub">Parcelación Soto del Este — Geotecnia</div>
+          <div class="pv-a-client">El Retiro, Antioquia</div>
+
+          <div class="pv-a-kpis">
+            <div class="pv-a-kpi"><div class="pv-a-kpi-v">~650 m²</div><div class="pv-a-kpi-l">talud estabilizado</div></div>
+            <div class="pv-a-kpi"><div class="pv-a-kpi-v">Filtros</div><div class="pv-a-kpi-l">manejo de aguas subsuperficiales</div></div>
+            <div class="pv-a-kpi"><div class="pv-a-kpi-v">Entregada</div><div class="pv-a-kpi-l">talud revegetalizado</div></div>
+          </div>
+
+          <div class="pv-a-note">
+            Muro de contención en suelo reforzado, filtros para manejo de aguas subsuperficiales
+            y revegetalización de la ladera. Obra entregada.
+          </div>
+        </div>
+      </article>
+
+      <!-- 03 · Informe Técnico de Impermeabilización -->
+      <article class="pv-a-card">
+        <div class="pv-a-photo">
+          <img src="https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?auto=format&amp;fit=crop&amp;w=1200&amp;q=70" alt="" />
+          <span class="pv-a-photo-tag">FOTO REFERENCIA</span>
+        </div>
+        <div class="pv-a-body">
+          <div class="pv-a-top">
+            <div class="pv-a-num">03</div>
+            <div class="pv-a-year">2025</div>
+            <div class="pv-badge bg-civil">PERITAJE</div>
+          </div>
+          <h3 class="pv-a-title">Informe Técnico de Impermeabilización</h3>
+          <div class="pv-a-sub">Peritaje y concepto técnico — Losa tercer piso</div>
+          <div class="pv-a-client">Edificación · Medellín</div>
+
+          <div class="pv-a-kpis">
+            <div class="pv-a-kpi"><div class="pv-a-kpi-v">14 días</div><div class="pv-a-kpi-l">desde inspección a entrega</div></div>
+            <div class="pv-a-kpi"><div class="pv-a-kpi-v">100 %</div><div class="pv-a-kpi-l">causa raíz identificada</div></div>
+            <div class="pv-a-kpi"><div class="pv-a-kpi-v">COP $</div><div class="pv-a-kpi-l">plan de remediación valorado</div></div>
+          </div>
+
+          <div class="pv-a-note">
+            Inspección técnica, ensayos no destructivos y dictamen con plan de remediación.
+          </div>
+        </div>
+      </article>
+
+      <!-- 04 · Infraestructura Mineros S.A. -->
+      <article class="pv-a-card">
+        <div class="pv-a-photo">
+          <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&amp;fit=crop&amp;w=1200&amp;q=70" alt="" />
+          <span class="pv-a-photo-tag">FOTO REFERENCIA</span>
+        </div>
+        <div class="pv-a-body">
+          <div class="pv-a-top">
+            <div class="pv-a-num">04</div>
+            <div class="pv-a-year">2022 – 2024</div>
+            <div class="pv-badge bg-infra">INFRAESTRUCTURA</div>
+          </div>
+          <h3 class="pv-a-title">Infraestructura Mineros S.A.</h3>
+          <div class="pv-a-sub">Gerencia e Interventoría</div>
+          <div class="pv-a-client">Mineros S.A. · El Bagre, Antioquia</div>
+
+          <div class="pv-a-kpis">
+            <div class="pv-a-kpi"><div class="pv-a-kpi-v">Multi-frente</div><div class="pv-a-kpi-l">obras simultáneas</div></div>
+            <div class="pv-a-kpi"><div class="pv-a-kpi-v">Zona remota</div><div class="pv-a-kpi-l">logística y HSEQ</div></div>
+            <div class="pv-a-kpi"><div class="pv-a-kpi-v">100 %</div><div class="pv-a-kpi-l">cumplimiento normativo</div></div>
+          </div>
+
+          <div class="pv-a-note">
+            Gerencia técnica y administrativa, interventoría de calidad y cumplimiento HSEQ.
+          </div>
+        </div>
+      </article>
+
+      <!-- 05 · Urbanización California — Parcelación Norteamérica -->
+      <article class="pv-a-card">
+        <div class="pv-a-photo">
+          <img src="assets/img/card-california-parqueadero.jpg" alt="Parqueadero terminado con geoceldas y gravilla en la Urbanización California, Bello" />
+        </div>
+        <div class="pv-a-body">
+          <div class="pv-a-top">
+            <div class="pv-a-num">05</div>
+            <div class="pv-a-year">2026</div>
+            <div class="pv-badge bg-civil">CIVIL · DRENAJES</div>
+          </div>
+          <h3 class="pv-a-title">Urbanización California — Parcelación Norteamérica</h3>
+          <div class="pv-a-sub">Control de escorrentía y parqueaderos con geoceldas</div>
+          <div class="pv-a-client">Bello, Antioquia</div>
+
+          <div class="pv-a-kpis">
+            <div class="pv-a-kpi"><div class="pv-a-kpi-v">Geoceldas</div><div class="pv-a-kpi-l">confinamiento del material granular</div></div>
+            <div class="pv-a-kpi"><div class="pv-a-kpi-v">Escorrentía</div><div class="pv-a-kpi-l">control de aguas superficiales</div></div>
+            <div class="pv-a-kpi"><div class="pv-a-kpi-v">Permeable</div><div class="pv-a-kpi-l">superficie estable y drenante</div></div>
+          </div>
+
+          <div class="pv-a-note">
+            Control de aguas de escorrentía y adecuación de parqueaderos con geoceldas:
+            superficie estable y permeable para las zonas comunes de la urbanización.
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="pv-foot">// Cifras de ejemplo · pendientes de validación con el cliente</div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros" data-chapter="06">
+  <!-- Bloque superior: identidad + principio -->
+  <div class="nos-top reveal">
+    <div class="nos-identity">
+      <div class="sec-tag">Quiénes somos</div>
+      <h2 class="sec-h2">INICON<br>Ingeniería + Desarrollo</h2>
+      <p class="nos-lead">Firma de Ingeniería especializada en gerencia de proyectos, construcción e interventoría para el sector de la infraestructura y el desarrollo inmobiliario en Colombia. Fundada y liderada por <strong>Juan Carlos Meza Velásquez</strong>, Ingeniero Civil con más de 30 años de experiencia y <strong>Magíster en Gerencia de Proyectos — Universidad EAFIT</strong>.</p>
+    </div>
+    <div class="nos-principio">
+      <div class="nos-principio-inner">
+        <div class="nos-principio-label">Principio rector</div>
+        <blockquote>Los proyectos deben terminar como se planearon.</blockquote>
+        <p>Rigor técnico, formación académica de alto nivel, herramientas modernas e Inteligencia Artificial al servicio de quien invierte.</p>
+        <a href="#contacto" class="btn-gold" style="margin-top:1.6rem;display:inline-block;">Trabajemos juntos</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bloque inferior: valores + expertise -->
+  <div class="nos-bottom">
+    <div class="nos-valores reveal">
+      <div class="nos-block-title">Nuestros valores</div>
+      <div class="valores-grid">
+        <div class="valor-box">
+          <div class="valor-icon">
+            <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="#004AAD" stroke-width="1.5" fill="#EEF4FB"/><path d="M10 16 Q16 10 22 16 Q16 22 10 16Z" fill="#004AAD" opacity=".3"/><circle cx="16" cy="16" r="3" fill="#004AAD"/></svg>
+          </div>
+          <h4>Escucha Activa</h4>
+          <p>Ningún punto queda sin aclarar. Entendemos el proyecto antes de proponer soluciones.</p>
+        </div>
+        <div class="valor-box">
+          <div class="valor-icon">
+            <svg viewBox="0 0 32 32" fill="none"><polygon points="16,4 28,28 4,28" stroke="#004AAD" stroke-width="1.5" fill="#EEF4FB" stroke-linejoin="round"/><line x1="16" y1="13" x2="16" y2="20" stroke="#004AAD" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="23" r="1.5" fill="#C8982A"/></svg>
+          </div>
+          <h4>Exigencia</h4>
+          <p>Lo que exigimos a nuestros clientes, nos lo exigimos primero a nosotros mismos.</p>
+        </div>
+        <div class="valor-box">
+          <div class="valor-icon">
+            <svg viewBox="0 0 32 32" fill="none"><rect x="4" y="8" width="24" height="18" rx="2" stroke="#004AAD" stroke-width="1.5" fill="#EEF4FB"/><line x1="4" y1="14" x2="28" y2="14" stroke="#D0DCF0" stroke-width="1"/><polyline points="9,20 13,24 23,16" stroke="#C8982A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Transparencia</h4>
+          <p>Reducimos la incertidumbre con datos reales. No endulzamos resultados.</p>
+        </div>
+        <div class="valor-box">
+          <div class="valor-icon">
+            <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="#004AAD" stroke-width="1.5" fill="#EEF4FB"/><line x1="16" y1="8" x2="16" y2="16" stroke="#004AAD" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="16" x2="22" y2="20" stroke="#C8982A" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="16" r="2" fill="#1F4E79"/></svg>
+          </div>
+          <h4>Optimización</h4>
+          <p>Cada proceso se puede mejorar. Usamos IA y metodología para lograrlo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="nos-expertise reveal" style="transition-delay:.15s">
+      <div class="nos-block-title">Áreas de expertise</div>
+      <div class="exp-item">
+        <div class="exp-head"><span class="exp-name">Gerencia de Proyectos (PMI)</span><span class="exp-pct">95%</span></div>
+        <div class="exp-bar"><div class="exp-fill" style="width:95%"></div></div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-head"><span class="exp-name">Interventoría Técnica</span><span class="exp-pct">90%</span></div>
+        <div class="exp-bar"><div class="exp-fill" style="width:90%"></div></div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-head"><span class="exp-name">Desarrollo Inmobiliario</span><span class="exp-pct">85%</span></div>
+        <div class="exp-bar"><div class="exp-fill" style="width:85%"></div></div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-head"><span class="exp-name">Construcción de Obras Civiles</span><span class="exp-pct">88%</span></div>
+        <div class="exp-bar"><div class="exp-fill" style="width:88%"></div></div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-head"><span class="exp-name">Normativa NSR-10 / CST / DIAN</span><span class="exp-pct">98%</span></div>
+        <div class="exp-bar"><div class="exp-fill" style="width:98%"></div></div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-head"><span class="exp-name">IA Aplicada a Ingeniería</span><span class="exp-pct">75%</span></div>
+        <div class="exp-bar"><div class="exp-fill" style="width:75%; background: linear-gradient(90deg,#3730A3,#6366f1);"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" data-chapter="07">
+  <div class="reveal">
+    <div class="sec-tag">Hablemos</div>
+    <h2 class="sec-h2">Contáctenos</h2>
+  </div>
+  <div class="contacto-grid">
+    <div class="c-left reveal">
+      <h3>Inicie su proyecto<br>con control</h3>
+      <p>Si su proyecto de construcción, contrato de obra o desarrollo inmobiliario necesita gerencia profesional, estamos disponibles para una reunión de diagnóstico sin costo.</p>
+      <div class="cinfo">
+        <span class="cinfo-badge">DIR</span>
+        <div class="cinfo-text"><strong>Calle 28 Sur # 27-201, Int 505</strong><br>Envigado, Antioquia · 055420</div>
+      </div>
+      <div class="cinfo">
+        <span class="cinfo-badge">TEL</span>
+        <div class="cinfo-text">
+          <a href="https://wa.me/573174401207" target="_blank" rel="noopener" class="wa-link">
+            <strong>317 440 1207</strong>
+            <svg class="wa-icon" viewBox="0 0 24 24" fill="#25D366" xmlns="http://www.w3.org/2000/svg" aria-label="WhatsApp">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+            </svg>
+            <span class="wa-label">WhatsApp</span>
+          </a>
+        </div>
+      </div>
+      <div class="cinfo">
+        <span class="cinfo-badge">EMAIL</span>
+        <div class="cinfo-text"><strong>gerencia@inicon.com.co</strong></div>
+      </div>
+      <div class="cinfo">
+        <span class="cinfo-badge">WEB</span>
+        <div class="cinfo-text"><strong>inicon.com.co</strong></div>
+      </div>
+      <div class="cinfo">
+        <span class="cinfo-badge">NIT</span>
+        <div class="cinfo-text"><strong>902030543-8</strong></div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.15s">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre completo</label>
+          <input type="text" id="fNombre" name="Nombre" placeholder="Su nombre" />
+        </div>
+        <div class="form-group">
+          <label>Empresa</label>
+          <input type="text" id="fEmpresa" name="Empresa" placeholder="Razón social" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Correo electrónico</label>
+        <input type="email" id="fEmail" name="Correo" placeholder="correo@empresa.com" />
+      </div>
+      <div class="form-group">
+        <label>Servicio requerido</label>
+        <select id="fServicio" name="Servicio">
+          <option value="">Seleccione un servicio</option>
+          <option>Gerencia de Contratos</option>
+          <option>Gerencia de Proyectos</option>
+          <option>Interventoría Técnica</option>
+          <option>Consultoría Técnica</option>
+          <option>Desarrollo Inmobiliario</option>
+          <option>Lean Construction</option>
+          <option>INICON + IA</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Descripción del proyecto</label>
+        <textarea id="fDescripcion" name="Descripción del proyecto" placeholder="Cuéntenos sobre su proyecto: tipo, ubicación, etapa actual y presupuesto aproximado..."></textarea>
+      </div>
+      <button class="form-submit" id="formSubmitBtn" type="button">Solicitar Diagnóstico Gratuito →</button>
+      <div class="form-toast" id="formToast">Mensaje enviado — nos comunicaremos en menos de 24 horas.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo-text">
+        <strong>INICON</strong>
+        <span>Ingeniería + Desarrollo S.A.S.</span>
+      </div>
+      <p>Consultoría especializada en gerencia de contratos, gerencia de proyectos e interventoría técnica. Potenciada con Inteligencia Artificial. Medellín, Colombia.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#servicios">Gerencia de Contratos</a></li>
+        <li><a href="#servicios">Gerencia de Proyectos</a></li>
+        <li><a href="#servicios">Interventoría Técnica</a></li>
+        <li><a href="#servicios">Consultoría</a></li>
+        <li><a href="#ia">INICON + IA</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#problema">Por qué INICON</a></li>
+        <li><a href="#metodologia">Metodología</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="#">Calle 28 Sur #27-201 Int 505</a></li>
+        <li><a href="#">Envigado, Antioquia</a></li>
+        <li><a href="tel:+573174401207">317 440 1207</a></li>
+        <li><a href="mailto:gerencia@inicon.com.co">gerencia@inicon.com.co</a></li>
+        <li><a href="https://inicon.com.co">inicon.com.co</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 INICON Ingeniería & Desarrollo S.A.S. — NIT 902030543-8 — Todos los derechos reservados.</span>
+    <span class="footer-reg">Envigado · Antioquia · Colombia</span>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+  const nav = document.getElementById('mainnav');
+  window.addEventListener('scroll', () => {
+    nav.style.boxShadow = window.scrollY > 40 ? '0 4px 24px rgba(0,74,173,0.18)' : '0 2px 16px rgba(0,74,173,0.10)';
+  });
+  const navToggle = document.getElementById('navToggle');
+  navToggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('nav-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  const navAs = document.querySelectorAll('.nav-links a[href^="#"]');
+  const activeObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { threshold: 0.25, rootMargin: '-88px 0px -35% 0px' });
+  document.querySelectorAll('section[id]').forEach(s => activeObserver.observe(s));
+
+  const formBtn = document.getElementById('formSubmitBtn');
+  const formToast = document.getElementById('formToast');
+  if (formBtn) {
+    formBtn.addEventListener('click', async () => {
+      const nombre = document.getElementById('fNombre').value.trim();
+      const empresa = document.getElementById('fEmpresa').value.trim();
+      const email = document.getElementById('fEmail').value.trim();
+      const servicio = document.getElementById('fServicio').value;
+      const descripcion = document.getElementById('fDescripcion').value.trim();
+
+      if (!nombre || !email) {
+        formToast.textContent = 'Por favor complete al menos su nombre y correo electrónico.';
+        formToast.classList.add('ft-visible', 'ft-error');
+        return;
+      }
+      formToast.classList.remove('ft-visible', 'ft-error');
+
+      formBtn.textContent = 'Enviando…';
+      formBtn.classList.add('fs-loading');
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/gerencia@inicon.com.co', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            _subject: 'Nueva solicitud de diagnóstico — inicon.com.co',
+            _template: 'table',
+            Nombre: nombre,
+            Empresa: empresa,
+            Correo: email,
+            Servicio: servicio,
+            'Descripción del proyecto': descripcion
+          })
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        formBtn.textContent = 'Mensaje enviado ✓';
+        formBtn.classList.remove('fs-loading');
+        formBtn.classList.add('fs-success');
+        formToast.textContent = 'Mensaje enviado — nos comunicaremos en menos de 24 horas.';
+        formToast.classList.add('ft-visible');
+      } catch (err) {
+        formBtn.textContent = 'Solicitar Diagnóstico Gratuito →';
+        formBtn.classList.remove('fs-loading');
+        formToast.textContent = 'No se pudo enviar. Escríbanos directamente a gerencia@inicon.com.co o por WhatsApp al 317 440 1207.';
+        formToast.classList.add('ft-visible', 'ft-error');
+      }
+    });
+  }
+</script>
+<!-- ═══════════════════════════════════════════════════════════════
+     React mount no longer needed — IA section is now static HTML
+     ═══════════════════════════════════════════════════════════════ -->
+</body>
+</html>

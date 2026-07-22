@@ -1,0 +1,222 @@
+/* Proyectos · Variante A scoped styles
+   (recreado tras limpieza — solo lo que el sitio usa)
+   ─────────────────────────────────────────────────── */
+
+.pv {
+  background: var(--off-white);
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  padding: 4.5rem 4rem 4rem;
+  position: relative;
+}
+.pv *, .pv *::before, .pv *::after { box-sizing: border-box; }
+
+/* ── shared head ── */
+.pv-head { max-width: 720px; margin-bottom: 3rem; }
+.pv-eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blue-main);
+  display: flex; align-items: center; gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+.pv-eyebrow span {
+  width: 32px; height: 2px; background: var(--gold);
+}
+.pv-h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 3.6rem;
+  line-height: 0.96;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+  margin-bottom: 1.1rem;
+}
+.pv-lead {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--text-mid);
+  margin: 0;
+}
+.pv-meta {
+  display: flex; gap: 2rem;
+  margin-top: 1.6rem;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.pv-meta strong { color: var(--blue-main); font-weight: 800; font-size: 0.95rem; }
+.pv-meta span { display: inline-flex; align-items: baseline; gap: 0.45rem; }
+
+/* ── badges ── */
+.pv-badge {
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.32rem 0.65rem;
+  display: inline-block;
+  color: var(--white);
+  background: var(--text-muted);
+}
+.pv-badge.bg-inmob { background: var(--badge-inmob); }
+.pv-badge.bg-civil { background: var(--badge-civil); }
+.pv-badge.bg-infra { background: var(--badge-infra); }
+.pv-badge.bg-contrato { background: var(--badge-contrato); }
+
+/* ── photo overlay ── */
+.pv-a-photo-tag {
+  position: absolute;
+  top: 0.7rem; left: 0.7rem;
+  font-family: var(--font-display);
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  background: rgba(0,0,0,0.65);
+  color: var(--white);
+  padding: 0.25rem 0.5rem;
+  pointer-events: none;
+}
+
+/* ── foot ── */
+.pv-foot {
+  margin-top: 2.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border);
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* ═══ VARIANT A — horizontal cards ═══ */
+
+.pv-a-list {
+  display: flex; flex-direction: column;
+  gap: 1.4rem;
+}
+.pv-a-card {
+  display: grid;
+  grid-template-columns: 420px minmax(0, 1fr);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  overflow: hidden;
+  transition: transform var(--t-fast), box-shadow var(--t-fast);
+}
+.pv-a-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,74,173,0.08);
+}
+.pv-a-photo {
+  position: relative;
+  background: var(--blue-pale);
+  overflow: hidden;
+  min-height: 240px;
+}
+.pv-a-photo img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(0.85) contrast(1.05);
+}
+.pv-a-body {
+  padding: 1.8rem 2rem;
+  display: flex; flex-direction: column;
+}
+.pv-a-top {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 1rem;
+}
+.pv-a-num {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: var(--blue-mid);
+}
+.pv-a-year {
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+}
+.pv-a-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+  line-height: 1.1;
+  margin: 0 0 0.4rem 0;
+  letter-spacing: -0.005em;
+}
+.pv-a-sub {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--blue-main);
+  margin-bottom: 0.2rem;
+}
+.pv-a-client {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  margin-bottom: 1.1rem;
+}
+
+.pv-a-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin: 0.4rem 0 1rem 0;
+}
+.pv-a-kpi {
+  background: var(--off-white);
+  padding: 0.85rem 0.9rem;
+}
+.pv-a-kpi-v {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.45rem;
+  color: var(--blue-main);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.pv-a-kpi-l {
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+.pv-a-note {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--text-mid);
+  margin-top: auto;
+  padding-top: 0.4rem;
+  border-top: 1px dashed var(--border);
+}
+
+@media (max-width: 900px) {
+  .pv-a-card { grid-template-columns: 1fr; }
+  .pv-a-photo { min-height: 200px; }
+}

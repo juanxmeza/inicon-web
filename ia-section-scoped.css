@@ -1,0 +1,319 @@
+/* INICON + IA · 5 asistentes especializados
+   ───────────────────────────────────────────
+   Sin demos. Solo descripción de uso real.
+*/
+
+.ia-section {
+  position: relative;
+  background: var(--blue-dark);
+  color: var(--white);
+  padding: var(--space-8) var(--gutter);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ia-bg-photo {
+  position: absolute; inset: 0; z-index: -2;
+  background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=2400&q=70');
+  background-size: cover; background-position: center;
+  opacity: 0.06;
+  filter: grayscale(1) contrast(1.1);
+}
+.ia-bg-grid {
+  position: absolute; inset: 0; z-index: -1;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+.ia-container {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ─── HEADER ─────────────────────────────────────────────── */
+.ia-header { max-width: 880px; margin-bottom: 3.6rem; }
+
+.ia-section .sec-tag { color: var(--gold); }
+.ia-section .sec-tag::before { background: var(--gold); }
+
+.ia-h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  line-height: 0.96;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  margin-bottom: 1.6rem;
+}
+.ia-h2 .plus  { color: var(--gold); font-weight: 300; }
+.ia-h2 .ia-word { color: var(--gold); position: relative; display: inline-block; }
+.ia-h2 .ia-word::after {
+  content: '';
+  position: absolute;
+  left: 0; right: -8px; bottom: -8px;
+  height: 4px; background: var(--gold); opacity: 0.4;
+}
+
+.ia-lead {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--blue-light);
+  max-width: 700px;
+}
+.ia-lead strong { color: var(--white); font-weight: 700; }
+.ia-lead em { color: var(--gold); font-style: normal; font-weight: 600; }
+
+/* ─── MANIFESTO (postura) ────────────────────────────────── */
+.ia-manifest {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-bottom: 4rem;
+  padding: 2rem 2.2rem;
+  background: rgba(255,255,255,0.04);
+  border-left: 4px solid var(--gold);
+}
+.ia-manifest-label {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  margin-bottom: 0.7rem;
+}
+.ia-manifest p {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--blue-light);
+  margin-bottom: 0.9rem;
+}
+.ia-manifest p:last-child { margin-bottom: 0; }
+.ia-manifest strong { color: var(--white); font-weight: 700; }
+.ia-manifest em { color: var(--gold); font-style: normal; font-weight: 600; }
+
+/* ─── ASSISTANTS GRID ────────────────────────────────────── */
+.ia-grid-label {
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.4rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.ia-grid-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.14);
+}
+
+.ia-assistants {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.10);
+  margin-bottom: 1.4rem;
+}
+
+.ia-asst {
+  background: rgba(15, 30, 52, 0.55);
+  padding: 1.8rem 1.7rem 1.6rem;
+  display: flex; flex-direction: column;
+  border-top: 3px solid transparent;
+  transition: background var(--t-med), border-top-color var(--t-med);
+  position: relative;
+  min-height: 380px;
+}
+.ia-asst:hover {
+  background: rgba(15, 30, 52, 0.78);
+  border-top-color: var(--gold);
+}
+
+.ia-asst-head {
+  display: flex; align-items: baseline; gap: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+.ia-asst-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.6rem;
+  letter-spacing: -0.01em;
+  color: var(--gold);
+  line-height: 1;
+}
+.ia-asst-tag {
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+
+.ia-asst-icon {
+  width: 56px; height: 56px;
+  margin-bottom: 1.2rem;
+}
+.ia-asst-icon svg { width: 100%; height: 100%; display: block; }
+
+.ia-asst-role {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 0.7rem;
+}
+
+.ia-asst-desc {
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--blue-light);
+  margin-bottom: 1.1rem;
+}
+
+.ia-asst-foot {
+  margin-top: auto;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255,255,255,0.10);
+}
+.ia-asst-foot-label {
+  font-family: var(--font-display);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 0.45rem;
+}
+.ia-asst-tags {
+  display: flex; flex-wrap: wrap; gap: 0.3rem;
+}
+.ia-asst-chip {
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(200,152,42,0.10);
+  border: 1px solid rgba(200,152,42,0.30);
+  padding: 0.22rem 0.5rem;
+}
+
+.ia-asst-phase {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  text-align: right;
+  line-height: 1.4;
+  max-width: 90px;
+}
+
+/* ─── CTA TILE (the 6th cell — invites custom assistant) ─── */
+.ia-asst-cta {
+  text-decoration: none;
+  color: inherit;
+  background: rgba(200, 152, 42, 0.08);
+  border-top: 3px solid var(--gold) !important;
+  cursor: pointer;
+}
+.ia-asst-cta:hover {
+  background: rgba(200, 152, 42, 0.16);
+}
+.ia-asst-cta .ia-asst-num {
+  font-size: 2.4rem;
+  line-height: 0.8;
+  font-weight: 300;
+}
+.ia-asst-cta .ia-asst-phase { color: var(--gold); }
+.ia-asst-cta-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding-top: 0.4rem;
+}
+.ia-asst-cta-arrow {
+  font-size: 1.1rem;
+  transition: transform var(--t-fast);
+}
+.ia-asst-cta:hover .ia-asst-cta-arrow { transform: translateX(3px); }
+
+/* ─── BOTTOM FRAMING ─────────────────────────────────────── */
+.ia-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(255,255,255,0.10);
+  margin-bottom: 1.8rem;
+}
+.ia-bottom-cell {
+  background: rgba(15, 30, 52, 0.55);
+  padding: 1.4rem 1.7rem;
+  display: flex; flex-direction: column;
+  gap: 0.45rem;
+}
+.ia-bottom-cell-label {
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.ia-bottom-cell-text {
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--blue-light);
+}
+.ia-bottom-cell-text strong { color: var(--white); font-weight: 700; }
+
+.ia-foot {
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.02em;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .ia-assistants { grid-template-columns: repeat(2, 1fr); }
+  .ia-manifest { grid-template-columns: 1fr; gap: 1.4rem; }
+  .ia-bottom { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .ia-section { padding: var(--space-7) var(--space-4); }
+  .ia-assistants { grid-template-columns: 1fr; }
+}

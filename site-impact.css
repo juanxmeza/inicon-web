@@ -1,0 +1,400 @@
+/* INICON · IMPACT LAYER
+   ─────────────────────────────────────────
+   Misma estructura, misma información.
+   Más drama tipográfico, más rimo visual,
+   marcadores de capítulo, hover más confiado.
+*/
+
+/* ═══════════════════════════════════════════════════════════
+   1. GHOST CHAPTER NUMBERS
+   Cada sección con data-chapter recibe un número gigante
+   detrás del contenido — crea ritmo como capítulos de libro
+   ═══════════════════════════════════════════════════════════ */
+
+section[data-chapter] {
+  position: relative;
+  isolation: isolate;
+}
+section[data-chapter]::after {
+  content: attr(data-chapter);
+  position: absolute;
+  top: 1.5rem;
+  right: 3rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: clamp(8rem, 14vw, 16rem);
+  color: var(--gold);
+  opacity: 0.05;
+  line-height: 0.85;
+  z-index: -1;
+  pointer-events: none;
+  letter-spacing: -0.05em;
+  user-select: none;
+}
+/* Dark surfaces need slightly more opacity */
+#ia[data-chapter]::after,
+#contacto[data-chapter]::after {
+  color: var(--gold);
+  opacity: 0.08;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   2. SECTION EYEBROW — más confiado
+   ═══════════════════════════════════════════════════════════ */
+
+.sec-tag {
+  font-size: 0.74rem !important;
+  letter-spacing: 0.28em !important;
+  margin-bottom: 1.6rem !important;
+  gap: 1.1rem !important;
+  font-weight: 700 !important;
+}
+.sec-tag::before {
+  width: 56px !important;
+  height: 3px !important;
+  background: var(--gold) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   3. H2 MONUMENTAL
+   ═══════════════════════════════════════════════════════════ */
+
+.sec-h2 {
+  font-size: clamp(3rem, 7.5vw, 6.8rem) !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.025em !important;
+  font-weight: 800 !important;
+  margin-bottom: 1.4rem !important;
+}
+.ia-h2 {
+  font-size: clamp(3rem, 7vw, 6rem) !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.02em !important;
+}
+.pv-h2 {
+  font-size: clamp(3rem, 7vw, 6rem) !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.025em !important;
+}
+.pv-eyebrow {
+  font-size: 0.74rem !important;
+  letter-spacing: 0.28em !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   4. HERO — más grande, más confiado
+   ═══════════════════════════════════════════════════════════ */
+
+.hero-h1 {
+  font-size: clamp(3.6rem, 9vw, 8rem) !important;
+  line-height: 0.92 !important;
+  letter-spacing: -0.03em !important;
+  font-weight: 800 !important;
+}
+.hero-eyebrow {
+  font-size: 0.72rem !important;
+  letter-spacing: 0.28em !important;
+}
+.hero-tagline {
+  font-size: 0.92rem !important;
+  letter-spacing: 0.05em !important;
+}
+.hero-sub {
+  font-size: 1.05rem !important;
+  line-height: 1.75 !important;
+}
+
+/* Stats con borde dorado superior y fondo más oscuro */
+.hstat {
+  background: rgba(0, 0, 0, 0.42) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  border-top: 3px solid var(--gold) !important;
+  padding: 1.3rem 1.5rem !important;
+  min-width: 110px;
+}
+.hstat-val {
+  font-size: 2.7rem !important;
+  letter-spacing: -0.02em !important;
+  line-height: 0.95 !important;
+}
+.hstat-lbl {
+  font-size: 0.6rem !important;
+  letter-spacing: 0.14em !important;
+  font-weight: 700 !important;
+}
+
+/* CTAs hero — más presencia */
+.btn-gold, .btn-outline-w {
+  padding: 1.1rem 2rem !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.16em !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   5. BANDA DORADA — números enormes
+   ═══════════════════════════════════════════════════════════ */
+
+.impact-band {
+  padding: 3rem 6rem !important;
+}
+.impact-val {
+  font-size: clamp(3.6rem, 7vw, 5.8rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.025em !important;
+}
+.impact-val span {
+  font-size: 50% !important;
+  margin-left: 2px;
+}
+.impact-label {
+  font-size: 0.72rem !important;
+  letter-spacing: 0.18em !important;
+  font-weight: 700 !important;
+  margin-top: 0.7rem !important;
+}
+.impact-sep {
+  height: 80px !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   6. POR QUÉ — reason cards
+   ═══════════════════════════════════════════════════════════ */
+
+.reason-card {
+  padding: 2.2rem 1.9rem !important;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border-bottom: 3px solid transparent !important;
+}
+.reason-card:hover {
+  background: var(--white) !important;
+  border-bottom-color: var(--gold) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 16px 36px rgba(0, 74, 173, 0.10) !important;
+}
+.reason-num {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 1.6rem !important;
+  font-weight: 800 !important;
+  color: var(--gold) !important;
+  margin-bottom: 0.7rem !important;
+  letter-spacing: -0.01em !important;
+}
+.reason-card h3 {
+  font-size: 1.05rem !important;
+  letter-spacing: -0.005em !important;
+  margin-bottom: 0.6rem !important;
+  line-height: 1.2 !important;
+}
+.reason-icon-wrap svg { width: 56px !important; height: 56px !important; }
+
+/* Callout dark más dramático */
+.callout-dark {
+  background: linear-gradient(135deg, var(--blue-dark) 0%, #163252 100%) !important;
+  padding: 2.6rem 2.4rem !important;
+}
+.callout-dark h3 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.02em !important;
+  margin-bottom: 1.3rem !important;
+}
+.callout-dark p { font-size: 0.95rem !important; line-height: 1.75 !important; }
+
+/* ═══════════════════════════════════════════════════════════
+   7. SERVICIOS — service cards más confiados
+   ═══════════════════════════════════════════════════════════ */
+
+.svc-card {
+  padding: 2.4rem 2rem !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.svc-card:hover {
+  background: var(--white) !important;
+  border-bottom-color: var(--blue-main) !important;
+  transform: translateY(-5px) !important;
+  box-shadow: 0 18px 44px rgba(0, 74, 173, 0.12) !important;
+}
+.svc-num {
+  font-size: 0.78rem !important;
+  color: var(--gold) !important;
+  letter-spacing: 0.18em !important;
+  font-weight: 800 !important;
+  margin-bottom: 0.4rem !important;
+}
+.svc-card h3 {
+  font-size: 1.18rem !important;
+  letter-spacing: -0.005em !important;
+  margin-bottom: 0.85rem !important;
+  line-height: 1.2 !important;
+}
+.svc-card p { font-size: 0.88rem !important; line-height: 1.65 !important; }
+.svc-svg-wrap svg { width: 64px !important; height: 64px !important; }
+
+/* ═══════════════════════════════════════════════════════════
+   8. METODOLOGÍA — fases más fuertes
+   ═══════════════════════════════════════════════════════════ */
+
+.meto-card {
+  padding: 2.2rem 1.8rem !important;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.meto-card:hover {
+  background: var(--white) !important;
+  border-top-color: var(--gold) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 14px 32px rgba(0, 74, 173, 0.10) !important;
+}
+.meto-num {
+  font-size: 0.82rem !important;
+  letter-spacing: 0.16em !important;
+  font-weight: 800 !important;
+  color: var(--gold) !important;
+}
+.meto-card h3 {
+  font-size: 1.08rem !important;
+  margin: 0.7rem 0 0.7rem !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.005em !important;
+}
+.meto-card p { font-size: 0.85rem !important; line-height: 1.65 !important; }
+
+/* ═══════════════════════════════════════════════════════════
+   9. NOSOTROS — quote bandera más grande
+   ═══════════════════════════════════════════════════════════ */
+
+.nos-principio blockquote {
+  font-size: clamp(1.6rem, 3vw, 2.3rem) !important;
+  line-height: 1.1 !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.015em !important;
+  font-style: italic !important;
+  color: var(--white) !important;
+}
+.nos-principio-label {
+  letter-spacing: 0.22em !important;
+}
+.nos-lead { font-size: 1rem !important; line-height: 1.75 !important; }
+
+.valor-box h4 {
+  font-size: 0.92rem !important;
+  letter-spacing: -0.005em !important;
+}
+
+/* Expertise bars más confiadas */
+.exp-name {
+  font-size: 0.84rem !important;
+  font-weight: 600 !important;
+}
+.exp-pct {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 1.05rem !important;
+  font-weight: 800 !important;
+  color: var(--gold) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   10. CONTACTO — más dramático
+   ═══════════════════════════════════════════════════════════ */
+
+#contacto h2.sec-h2 { color: var(--white) !important; }
+#contacto .sec-tag { color: var(--gold) !important; }
+#contacto .sec-tag::before { background: var(--gold) !important; }
+
+/* ═══════════════════════════════════════════════════════════
+   11. PROYECTOS (variant A) — head más grande
+   ═══════════════════════════════════════════════════════════ */
+
+.pv-a-title {
+  font-size: 1.65rem !important;
+  letter-spacing: -0.01em !important;
+}
+.pv-a-kpi-v {
+  font-size: 1.6rem !important;
+  letter-spacing: -0.015em !important;
+}
+.pv-a-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.pv-a-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 18px 40px rgba(0, 74, 173, 0.10) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   12. INICON+IA — H2 más grande, cards con más drama
+   ═══════════════════════════════════════════════════════════ */
+
+.ia-asst {
+  padding: 2.1rem 1.8rem 1.8rem !important;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.ia-asst:hover {
+  transform: translateY(-3px) !important;
+}
+.ia-asst-num {
+  font-size: 1.85rem !important;
+  letter-spacing: -0.02em !important;
+}
+.ia-asst-role {
+  font-size: 1.05rem !important;
+  letter-spacing: -0.005em !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   13. SECTION SPACING — más respirable
+   ═══════════════════════════════════════════════════════════ */
+
+section[data-chapter] {
+  padding-top: 8.5rem !important;
+  padding-bottom: 8rem !important;
+}
+@media (max-width: 1100px) {
+  section[data-chapter] {
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   14. FIXES — nav + IA section padding
+   ═══════════════════════════════════════════════════════════ */
+
+/* Nav: separa el bot\u00f3n Contactar del link Nosotros */
+.nav-cta {
+  margin-left: 2.4rem !important;
+}
+
+/* IA section: padding horizontal generoso para anclar tipografia monumental */
+section#ia[data-chapter],
+#ia.ia-section {
+  padding-left: clamp(2.5rem, 8vw, 7rem) !important;
+  padding-right: clamp(2.5rem, 8vw, 7rem) !important;
+}
+@media (max-width: 768px) {
+  section#ia[data-chapter],
+  #ia.ia-section {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   15. MOBILE — escala segura
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  section[data-chapter]::after {
+    font-size: 8rem !important;
+    top: 0.5rem;
+    right: 1rem;
+  }
+  .sec-h2 { font-size: clamp(2.2rem, 10vw, 3.6rem) !important; }
+  .ia-h2  { font-size: clamp(2.2rem, 9vw, 3.4rem) !important; }
+  .pv-h2  { font-size: clamp(2.2rem, 9vw, 3.4rem) !important; }
+  .hero-h1 { font-size: clamp(2.4rem, 11vw, 4.2rem) !important; }
+  .impact-val { font-size: clamp(2.2rem, 8vw, 3.4rem) !important; }
+  .impact-band { padding: 2rem 1.5rem !important; }
+  .impact-sep { display: none; }
+  .nos-principio blockquote { font-size: 1.4rem !important; }
+  .nav-cta { margin-left: 0 !important; }
+}
