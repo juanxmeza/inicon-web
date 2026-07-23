@@ -6,7 +6,7 @@ Página estática (HTML + CSS) publicada con GitHub Pages.
 ## Estructura
 
 - `index.html` — página completa (hero, servicios, IA, metodología, proyectos, contacto)
-- `design-v3.css`, `section-styles.css`, `site-impact.css`, `proyectos-variants.css`, `ia-section-scoped.css` — hojas de estilo
+- `design-v3.css`, `site-impact.css`, `proyectos-variants.css`, `ia-section-scoped.css` — hojas de estilo
 - `assets/img/` — fotografías de obra optimizadas para web (rotación EXIF horneada, JPEG progresivo)
   - `hero-*` — imagen del hero
   - `card-*` — tarjetas de la sección Proyectos
